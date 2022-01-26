@@ -4,12 +4,12 @@ const cheerio = require('cheerio');
 const shows = [
    {
       name: "Tjuun In",
-      desc: "Tjuun in'i kodu on Eesti esimene alternatiivmuusika kodulehekülg www.clubarena.com ning selle seeriaüritus Tune In, mis sai alguse milleniumi aastal.",
+      desc: "Tjuun In.",
       url: "https://services.err.ee/podcast/channel/11.xml"
    },
    {
       name: "Grindtape",
-      desc: "Igal reedel poeb Grindtape paitades sinu kõrvade sisse, tuues endaga kaasa bassimuusika peavoolu BANGERID ja ilusad põrandaalused emotsioonid ning võõrustades alati mõnda väljamaa DJ'd või produtsenti.",
+      desc: "Grindtape.",
       url: "https://services.err.ee/podcast/channel/38.xml"
    },
 ]
