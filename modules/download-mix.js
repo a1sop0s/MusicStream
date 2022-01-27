@@ -3,15 +3,13 @@ const axios = require("axios").default;
 
 
 async function downloadMix(url) {
-   console.log(url);
    const res = await axios({
       method: 'get',
       url: url,
       responseType: 'stream'
     });
-   //console.log(url);
-   const streamToFile = (inputStream, filePath) => {
-      //console.log(inputStream);
+
+   const streamToFile = (inputStream, filePath) => {;
       return new Promise((resolve, reject) => {
          const fileWriteStream = fs.createWriteStream(filePath)
          inputStream
@@ -26,7 +24,9 @@ async function downloadMix(url) {
 }
 
 function deleteMix() {
-   fs.unlinkSync('./mixes_temp/mix.mp3');
+   fs.unlink('./mixes_temp/mix.mp3', (err) => {
+      if (err && err.code !== 'ENOENT' && err.code !== 'EBUSY') throw err;
+   });
 }
 
 exports.downloadMix = downloadMix;
