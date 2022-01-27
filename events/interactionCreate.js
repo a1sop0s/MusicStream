@@ -1,3 +1,6 @@
+const { downloadMix } = require('../modules/download-mix');
+const { startPlaying } = require('../modules/play-music');
+
 module.exports = {
    name: 'interactionCreate',
    async execute(interaction) {
@@ -9,7 +12,7 @@ module.exports = {
          await downloadMix(interaction.values[0]);
          await startPlaying(interaction.member.voice.channel);
          await interaction.deleteReply();
-         await interaction.channel.send({ content: "Playing." });
+         await interaction.channel.send({ content: "Playing!" });
       }
 
       const command = client.commands.get(interaction.commandName);
