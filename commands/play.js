@@ -1,11 +1,11 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageSelectMenu, CommandInteractionOptionResolver } = require('discord.js');
+const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 const { retrieveStreams, retrieveShowlist } = require('../modules/scrape_r2.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
       .setName('play')
-      .setDescription('Lists available Mixes and plays upon selection.')
+      .setDescription('Lists available mixes and plays upon selection.')
       .addStringOption(option =>
          option.setName('show')
             .setDescription('The show to select a mix or podcast from.')
@@ -16,10 +16,10 @@ module.exports = {
 
 
       async execute(interaction) {
-         const optionResolver = new CommandInteractionOptionResolver();
-         const selectedShow = optionResolver.get('show').value;
+         const selectedShow = await interaction.options.getString('show');
+         //console.log(typeof selectedShow);
          const streams = await retrieveStreams(selectedShow);
-
+         if (!streams) return interaction.reply('Something went wrong!');
          const row = new MessageActionRow()
             .addComponents(
                new MessageSelectMenu()
