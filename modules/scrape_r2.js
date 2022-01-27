@@ -16,7 +16,7 @@ const shows = [
 
 async function retrieveStreams(show) {
    const _show = shows.find(s => s.name === show);
-   if (_show) return;
+   if (!_show) return;
    let showInfo = [];
 
    const response = await axios(_show);
@@ -74,4 +74,4 @@ async function retrieveShowlist(ignoreDesc) {
 exports.retrieveStreams = retrieveStreams;
 exports.retrieveShowlist = retrieveShowlist;
 //retrieveShowlist(true).then(sl => console.log(sl));
-//retrieveStreams("tjuun-in");
+//retrieveStreams("Tjuun In")
