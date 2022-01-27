@@ -1,7 +1,5 @@
 const fs = require('fs');
 const dotenv = require('dotenv');
-const { downloadMix } = require('./modules/download-mix');
-const { startPlaying } = require('./modules/play-music');
 const { Client, Collection, Intents } = require('discord.js');
 
 dotenv.config();
