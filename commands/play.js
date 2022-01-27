@@ -10,8 +10,9 @@ module.exports = {
          option.setName('show')
             .setDescription('The show to select a mix or podcast from.')
             .setRequired(true)
-            .addChoice('Tjuun In', 'Tjuun In')
             .addChoice('Grindtape', 'Grindtape')
+            .addChoice('Tjuun In', 'Tjuun In')
+            .addChoice('Urbanism', 'Urbanism')
          ),
 
 

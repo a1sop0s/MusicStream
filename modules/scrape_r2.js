@@ -4,14 +4,16 @@ const cheerio = require('cheerio');
 const shows = [
    {
       name: "Tjuun In",
-      desc: "Tjuun In.",
       url: "https://services.err.ee/podcast/channel/11.xml"
    },
    {
       name: "Grindtape",
-      desc: "Grindtape.",
       url: "https://services.err.ee/podcast/channel/38.xml"
    },
+   {
+      name: "Urbanism",
+      url: "https://services.err.ee/podcast/channel/19.xml"
+   }
 ]
 
 async function retrieveStreams(show) {
@@ -63,7 +65,7 @@ async function retrieveShowlist(ignoreDesc) {
       shows.forEach(s => {
          const showObj = new Object();
          showObj.label = s.name;
-         showObj.description = s.desc;
+        // showObj.description = s.desc;
          showObj.value = s.name;
 
          returnShows.push(showObj);
