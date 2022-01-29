@@ -6,6 +6,7 @@ const shows = require('../podcasts.json');
 async function retrieveStreams(show) {
    const _show = shows.podcasts.find(s => s.name === show);
    if (!_show) return;
+
    let showInfo = [];
 
    const response = await axios(_show);
@@ -16,13 +17,15 @@ async function retrieveStreams(show) {
    const items = $('item');
 
    const arr = items.toArray();
-   for (let i = 0; i < 25; i++) {
+   
+   for (let i = 0; i < (arr.length < 25 ? arr.length : 25); i++) {
+      // If the podcast has less than 25 shows, limit iterations to the amount of shows (length of array)
       const item = $(arr[i]);
       const _title = item.find('title').text();
       const _url = item.find('enclosure').attr('url');
       const _date = item.find('pubDate').text().substring(0, 16);
 
-      if (!_title || !_date || !_url) return;
+      if (!_title || !_date || !_url) return console.log(_title, _date, _url);
 
       const infoObj = new Object();
       infoObj.label = _title;
@@ -31,7 +34,7 @@ async function retrieveStreams(show) {
 
       showInfo.push(infoObj);
    }
-   //console.log(showInfo);
+   console.log(showInfo);
    return showInfo;
 
 }
