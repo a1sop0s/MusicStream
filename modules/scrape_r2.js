@@ -1,23 +1,10 @@
 const axios = require('axios').default;
 const cheerio = require('cheerio');
+const shows = require('../podcasts.json');
 
-const shows = [
-   {
-      name: "Tjuun In",
-      url: "https://services.err.ee/podcast/channel/11.xml"
-   },
-   {
-      name: "Grindtape",
-      url: "https://services.err.ee/podcast/channel/38.xml"
-   },
-   {
-      name: "Urbanism",
-      url: "https://services.err.ee/podcast/channel/19.xml"
-   }
-]
 
 async function retrieveStreams(show) {
-   const _show = shows.find(s => s.name === show);
+   const _show = shows.podcasts.find(s => s.name === show);
    if (!_show) return;
    let showInfo = [];
 
