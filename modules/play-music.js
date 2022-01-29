@@ -31,9 +31,9 @@ async function startPlaying(channel) {
    }
 }
 
-function stopPlaying() {
+async function stopPlaying() {
    if (player.state.status !== 'idle') {
-      player.stop();
+      await player.stop();
       deleteMix();
    }
 }
