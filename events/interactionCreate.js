@@ -7,6 +7,7 @@ module.exports = {
       if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
 
       if (interaction.customId === 'podcastselect') {
+         await stopPlaying();
          await interaction.update( { content: "Downloading...", components: []});
 
          await startPlaying(interaction.member.voice.channel, interaction.values[0]);

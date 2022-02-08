@@ -10,6 +10,7 @@ module.exports = {
          option.setName('show')
             .setDescription('The show to select a mix or podcast from.')
             .setRequired(true)
+            .addChoice('Citylights FM', 'Citylights FM')
             .addChoice('Grindtape', 'Grindtape')
             .addChoice('Tjuun In', 'Tjuun In')
             .addChoice('Urbanism', 'Urbanism')
@@ -18,7 +19,7 @@ module.exports = {
 
       async execute(interaction) {
          const selectedShow = await interaction.options.getString('show');
-         //console.log(typeof selectedShow);
+         
          const streams = await retrieveStreams(selectedShow);
          if (!streams) return interaction.reply('Something went wrong!');
          const row = new MessageActionRow()
