@@ -1,4 +1,4 @@
-const { startPlaying } = require('../modules/play-music');
+const { startPlaying, stopPlaying } = require('../modules/play-music');
 
 module.exports = {
    name: 'interactionCreate',
