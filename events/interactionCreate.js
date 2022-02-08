@@ -1,5 +1,4 @@
-const { downloadMix } = require('../modules/download-mix');
-const { startPlaying } = require('../modules/play-music');
+const { startPlaying, stopPlaying } = require('../modules/play-music');
 
 module.exports = {
    name: 'interactionCreate',
@@ -8,9 +7,10 @@ module.exports = {
       if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
 
       if (interaction.customId === 'podcastselect') {
+         await stopPlaying();
          await interaction.update( { content: "Downloading...", components: []});
-         await downloadMix(interaction.values[0]);
-         await startPlaying(interaction.member.voice.channel);
+
+         await startPlaying(interaction.member.voice.channel, interaction.values[0]);
          await interaction.deleteReply();
          await interaction.channel.send({ content: "Playing!" });
       }

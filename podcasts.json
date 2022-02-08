@@ -1,0 +1,20 @@
+{
+   "podcasts": [
+      {
+         "name": "Citylights FM",
+         "url": "https://services.err.ee/podcast/channel/11630.xml"
+      },
+      {
+         "name": "Grindtape",
+         "url": "https://services.err.ee/podcast/channel/38.xml"
+      },
+      {
+         "name": "Tjuun In",
+         "url": "https://services.err.ee/podcast/channel/11.xml"
+      },
+      {  
+         "name": "Urbanism",
+         "url": "https://services.err.ee/podcast/channel/19.xml"
+      }
+   ]
+}
