@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageSelectMenu } = require('discord.js');
+const { MessageActionRow, MessageSelectMenu, Message, MessageButton } = require('discord.js');
 const { retrieveStreams } = require('../modules/scrape_r2.js');
 
 module.exports = {
@@ -26,11 +26,23 @@ module.exports = {
          const row = new MessageActionRow()
             .addComponents(
                new MessageSelectMenu()
-               .setCustomId('podcastselect')
-               .setPlaceholder('Nothing selected')
-               .addOptions(streams[0])
+                  .setCustomId('podcastselect')
+                  .setPlaceholder('Nothing selected')
+                  .addOptions(streams[0]),
             );
+         const buttonrow = new MessageActionRow()
+               .addComponents(
+                  new MessageButton()
+                     .setCustomId('podcasts_back')
+                     .setEmoji('945771799692599316')
+                     .setStyle('SECONDARY')
+                     .setDisabled(true),
+                  new MessageButton()
+                     .setCustomId('podcasts_next')
+                     .setEmoji('945771799789060096')
+                     .setStyle('PRIMARY')
+               )
 
-         await interaction.reply({ content: "Please select a mix or podcast:", components: [row], ephemeral: true });
+         await interaction.reply({ content: "Please select a mix or podcast:", components: [row, buttonrow], ephemeral: true });
       }
 };

@@ -6,13 +6,20 @@ module.exports = {
       const client = interaction.client;
       if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
 
-      if (interaction.customId === 'podcastselect') {
-         await stopPlaying();
-         await interaction.update( { content: "Downloading...", components: []});
+      switch (interaction.customId) {
+         case 'podcastselect':
+            await stopPlaying();
+            await interaction.update( { content: "Downloading...", components: []});
 
-         await startPlaying(interaction.member.voice.channel, interaction.values[0]);
-         await interaction.deleteReply();
-         await interaction.channel.send({ content: "Playing!" });
+            await startPlaying(interaction.member.voice.channel, interaction.values[0]);
+            await interaction.deleteReply();
+            await interaction.channel.send({ content: "Playing!" });
+            break
+         case 'podcast_next':
+            // Update selectmenu with new value components
+            break
+      }
+      if (interaction.customId === 'podcastselect') {
       }
 
       const command = client.commands.get(interaction.commandName);
