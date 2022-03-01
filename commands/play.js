@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageSelectMenu, Message, MessageButton } = require('discord.js');
 const { retrieveStreams } = require('../modules/scrape_r2.js');
+const { setStream } = require('../modules/handle-pagination');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -23,26 +24,8 @@ module.exports = {
 
          const streams = await retrieveStreams(selectedShow);
          if (!streams) return interaction.reply({ content: "Something went wrong!", ephemeral: true });
-         const row = new MessageActionRow()
-            .addComponents(
-               new MessageSelectMenu()
-                  .setCustomId('podcastselect')
-                  .setPlaceholder('Nothing selected')
-                  .addOptions(streams[0]),
-            );
-         const buttonrow = new MessageActionRow()
-               .addComponents(
-                  new MessageButton()
-                     .setCustomId('podcasts_back')
-                     .setEmoji('945771799692599316')
-                     .setStyle('SECONDARY')
-                     .setDisabled(true),
-                  new MessageButton()
-                     .setCustomId('podcasts_next')
-                     .setEmoji('945771799789060096')
-                     .setStyle('PRIMARY')
-               )
+         const rows = setStream(streams);
 
-         await interaction.reply({ content: "Please select a mix or podcast:", components: [row, buttonrow], ephemeral: true });
+         await interaction.reply({ content: `Please select a mix or podcast: (Page 1/${streams.length})`, components: [rows[0], rows[1]], ephemeral: true });
       }
 };
