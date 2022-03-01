@@ -40,7 +40,7 @@ function setStream(_streams) {
    streams = _streams;
 
    // Create rows and disable buttons, if there is only 1 page of streams
-   const streamPage = createRows(streams[0], streams.length === 1 ? true : false);
+   const streamPage = createRows(streams[0], streams.length === 1);
    return streamPage;
 }
 
