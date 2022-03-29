@@ -1,5 +1,12 @@
-const { joinVoiceChannel, createAudioPlayer, createAudioResource, entersState, StreamType, AudioPlayerStatus, VoiceConnectionStatus, NoSubscriberBehavior} = require('@discordjs/voice');
-const { deleteMix } = require('../deprecated/download-mix');
+const {
+   joinVoiceChannel,
+   createAudioPlayer,
+   createAudioResource,
+   entersState,
+   AudioPlayerStatus,
+   NoSubscriberBehavior
+} = require('@discordjs/voice');
+
 const player = createAudioPlayer({
    behaviors: {
       noSubscriber: NoSubscriberBehavior.Pause,
@@ -34,7 +41,6 @@ async function startPlaying(channel, datastream) {
 async function stopPlaying() {
    if (player.state.status !== 'idle') {
       await player.stop();
-      deleteMix();
    }
 }
 
